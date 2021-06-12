@@ -6,8 +6,10 @@ import Typography from '@material-ui/core/Typography';
 import { Paper, Button } from '@material-ui/core';
 
 import { millisToMinutesAndSeconds } from '../../utils/millisToMinutesAndSeconds'
+import { defaultImage } from '../../models/DefaultImageCard'
 
 import { useStyles } from './Styles'
+import _ from 'lodash';
 
 const TrackCard = ({ info, isFavorite, handleRemoveFavorite, handleAddFavorite }) => {
   const classes = useStyles();
@@ -20,7 +22,7 @@ const TrackCard = ({ info, isFavorite, handleRemoveFavorite, handleAddFavorite }
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image={info.album.images[0].url}
+          image={!_.isEmpty(info.album.images) ? info.album.images[0].url : defaultImage}
           title="Contemplative Reptile"
         />
         <CardContent>

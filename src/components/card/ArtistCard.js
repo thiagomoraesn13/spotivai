@@ -8,6 +8,7 @@ import { Collapse, Paper, Button, Divider } from '@material-ui/core';
 import { useStyles } from './Styles'
 
 import { getHeaders, baseUrl } from '../../services/services'
+import { defaultImage } from '../../models/DefaultImageCard'
 
 import axios from 'axios'
 import _ from 'lodash';
@@ -47,7 +48,7 @@ const ArtistCard = ({ info, open, handleClick, token }) => {
         >
           <CardMedia
             className={classes.media}
-            image={info.images[0].url}
+            image={!_.isEmpty(info.images) ? info.images[0].url : defaultImage}
             title="Contemplative Reptile"
           />
           <CardContent>

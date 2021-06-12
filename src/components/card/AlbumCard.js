@@ -10,6 +10,7 @@ import { millisToMinutesAndSeconds } from '../../utils/millisToMinutesAndSeconds
 import { useStyles } from './Styles'
 
 import { baseUrl, getHeaders } from '../../services/services'
+import { defaultImage } from '../../models/DefaultImageCard'
 
 import axios from 'axios'
 import _ from 'lodash';
@@ -52,7 +53,7 @@ const AlbumCard = ({ info, open, handleClick, token }) => {
         >
           <CardMedia
             className={classes.media}
-            image={info.images[0].url}
+            image={!_.isEmpty(info.images) ? info.images[0].url : defaultImage}
             title="Contemplative Reptile"
           />
           <CardContent>

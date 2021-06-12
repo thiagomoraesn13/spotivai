@@ -10,6 +10,8 @@ import Errors from './components/errors'
 import { Content, Wrapper, Title, WrapperSuggestion } from './components/wrappers/components'
 import CustomTabs from './components/customTabs';
 
+import { deserializeArtist, deserializeAlbum, deserializeTrack } from './models/Deserialize'
+
 import {
   Grid,
   CircularProgress
@@ -48,38 +50,22 @@ const App = () => {
       let newData = []
 
       if (type === 'album') {
-        newData = data.albums.items.map(item => ({
-          ...item,
-          type: 'Album',
-          artist_names: item.artists
-            .map(artist => artist.name)
-            .toString()
-            .replace(/,/g, ', '),
-        }))
+        newData = deserializeAlbum(data.albums.items)
 
+        
         setOpenCards(newData.map(open => !!open.cards))
       }
-
+      
       if (type === 'artist') {
-        newData = data.artists.items.map(item => ({
-          ...item,
-          type: 'Artista',
-          genres: item.genres
-            .map(artist => artist)
-            .toString()
-            .replace(/,/g, ', '),
-        }))
-
+        newData = deserializeArtist(data.artists.items)
+        
         setOpenCards(newData.map(open => !!open.cards))
       }
-
+      
       if (type === 'track') {
-        newData = data.tracks.items.map(item => ({
-          ...item,
-          type: 'Track'
-        }))
+        newData = deserializeTrack(data.tracks.items)
       }
-
+      
       setInfos(newData)
     }
     catch (error) {
