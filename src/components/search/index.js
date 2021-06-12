@@ -9,7 +9,7 @@ import FormControl from '@material-ui/core/FormControl';
 
 import { options } from '../../utils/optionsSelect'
 
-const Search = ({ inputValue, setInputValue, fetchInfo, action }) => {
+const Search = ({ inputValue, setInputValue, fetchInfo, action, setAction }) => {
   const classes = useStyles();
 
   return (
@@ -20,7 +20,10 @@ const Search = ({ inputValue, setInputValue, fetchInfo, action }) => {
           label="Digite"
           variant="outlined"
           value={inputValue}
-          onChange={(value) => setInputValue(value.target.value)}
+          onChange={(value) => {
+            setInputValue(value.target.value)
+            setAction('')
+          }}
         />
       </Grid>
 

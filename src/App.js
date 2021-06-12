@@ -52,20 +52,19 @@ const App = () => {
       if (type === 'album') {
         newData = deserializeAlbum(data.albums.items)
 
-        
         setOpenCards(newData.map(open => !!open.cards))
       }
-      
+
       if (type === 'artist') {
         newData = deserializeArtist(data.artists.items)
-        
+
         setOpenCards(newData.map(open => !!open.cards))
       }
-      
+
       if (type === 'track') {
         newData = deserializeTrack(data.tracks.items)
       }
-      
+
       setInfos(newData)
     }
     catch (error) {
@@ -148,7 +147,7 @@ const App = () => {
                     {
                       infos.map((info, index) =>
                         <Grid
-                          item xs={12} sm={6} md={4}
+                          item xs={12} sm={12} md={infos.length === 1 ? 12 : 6}
                         >
                           <WrapperSuggestion>
                             <ArtistCard
@@ -170,7 +169,7 @@ const App = () => {
                     {
                       infos.map((info, index) =>
                         <Grid
-                          item xs={12} sm={6} md={4}
+                          item xs={12} sm={12} md={infos.length === 1 ? 12 : 6}
                         >
                           <WrapperSuggestion>
                             <AlbumCard
@@ -192,7 +191,7 @@ const App = () => {
                     {
                       infos.map(info =>
                         <Grid
-                          item xs={12} sm={6} md={4}
+                          item xs={12} sm={12} md={infos.length === 1 ? 12 : 6}
                         >
                           <WrapperSuggestion>
                             <TrackCard
